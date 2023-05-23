@@ -1,3 +1,10 @@
+@php
+    /** @var string $fullName */
+    use App\Models\Product;$fullName = Session::get('fullName');
+    /** @var Product $product */
+    $product = Session::get('product');
+@endphp
+
 <div style="    text-align: center;">
     <h1>{{ $fullName }}</h1>
     <br>

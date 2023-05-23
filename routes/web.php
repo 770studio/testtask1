@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [InvoiceController::class, 'index']);
-Route::post('pay_with_cc', [InvoiceController::class, 'payWithCreditCard'])->name('pay_with_cc');
+Route::match(['get', 'post'], 'pay_with_cc', [InvoiceController::class, 'payWithCreditCard'])->name('pay_with_cc');
 Route::post('process_payment', [InvoiceController::class, 'processPayment'])->name('process_payment');
 
