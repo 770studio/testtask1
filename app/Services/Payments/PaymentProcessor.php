@@ -4,5 +4,5 @@ namespace App\Services\Payments;
 
 interface PaymentProcessor
 {
-    public function getStatus(): string;
+    public function processPayment(): string;
 }

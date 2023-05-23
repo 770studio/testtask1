@@ -30,12 +30,20 @@ class InvoiceController extends Controller
 
     public function processPayment(ProcessPaymentRequest $request, CreditCardProcessor $paymentProcessor)
     {
-        DB::transaction(function () use ($request, $paymentProcessor) {
+
+        DB::transaction(function () use ($request, $paymentProcessor, &$status) {
             $order = Order::create($request->getOrder());
-            $payment = Payment::create($request->getPayment($order));
+            $status = $paymentProcessor->processPayment();
+            $payment = Payment::create([
+                'order_id' => $order->id,
+                'product_id' => $order->product_id,
+                'total' => $order->total,
+                'status' => $status
+            ]);
+
         });
 
+        return response($status);
 
-        dd(56666);
     }
 }

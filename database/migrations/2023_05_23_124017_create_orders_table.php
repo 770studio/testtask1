@@ -10,11 +10,11 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('expire_date');
-            $table->string('cc');
-            $table->string('cvv');
+            $table->decimal('cc', 20, 0);
+            $table->unsignedSmallInteger('cvv');
             $table->string('full_name');
-            $table->string('product_id');
-            $table->integer('total');
+            $table->uuid('product_id');
+            $table->decimal('total', 20);
             $table->timestamps();
 
 

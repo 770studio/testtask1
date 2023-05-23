@@ -10,6 +10,12 @@ return new class extends Migration {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('order_id');
+            $table->uuid('product_id');
+            $table->decimal('total', 20);
+            $table->string('status');
+
+
         });
     }
 

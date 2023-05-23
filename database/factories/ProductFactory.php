@@ -27,7 +27,7 @@ class ProductFactory extends Factory
 
 
         return [
-            "id" => fake()->uuid,
+            "uuid" => fake()->uuid,
             "name" => "за услугу " . head($products),
             "price" => rand(1, 1000),
             "currency" => "грн"

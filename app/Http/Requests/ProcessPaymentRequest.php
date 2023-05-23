@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Session;
@@ -13,8 +12,8 @@ class ProcessPaymentRequest extends FormRequest
     {
         return [
             'expire_date' => 'required',
-            'cc' => 'required',
-            'cvv' => 'required',
+            'cc' => 'required|numeric|max_digits:20',
+            'cvv' => 'required|numeric|max_digits:4',
             'full_name' => 'required',
 
         ];
@@ -33,15 +32,11 @@ class ProcessPaymentRequest extends FormRequest
 
         return array_merge(
             $this->validated(), [
-                'product_id' => $product->id,
+                'product_id' => $product->uuid,
                 'total' => $product->price,
             ]
         );
 
-    }
-
-    public function getPayment(Order $order)
-    {
     }
 
 

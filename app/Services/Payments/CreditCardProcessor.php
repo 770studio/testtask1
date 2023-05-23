@@ -8,7 +8,7 @@ class CreditCardProcessor implements PaymentProcessor
         'успешно', 'недостаточно денег', 'банк отклонил платеж'
     ];
 
-    public function getStatus(): string
+    public function processPayment(): string
     {
         return self::STATUSES[array_rand(self::STATUSES)];
 
